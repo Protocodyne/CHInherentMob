@@ -3,16 +3,16 @@ bind(entity_damage, null, null, @e,
 	if(@e['cause'] == "ENTITY_ATTACK" && @e['type'] != "PLAYER"){
 	
 		@prefix = "&c&l[ CHIM ]&f"
-		@value = import(@e['id'])
+		@value = array_get(import(@e['id']), 0)
 	
 		if(@value && @value != @e['damager']){
 		
-			tmsg(@e['damager'], colorize(@prefix "ÇØ´ç ¸÷Àº ´©±º°¡°¡ ¸ÕÀú µ¥¹ÌÁö¸¦ ÀÔÇû±â ¶§¹®¿¡ °ø°İÇÒ ¼ö ¾ø½À´Ï´Ù"))
+			tmsg(@e['damager'], colorize(@prefix "í•´ë‹¹ ëª¹ì€ ëˆ„êµ°ê°€ê°€ ë¨¼ì € ë°ë¯¸ì§€ë¥¼ ì…í˜”ê¸° ë•Œë¬¸ì— ê³µê²©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤"))
 			cancel()
 		
 		}else{
 		
-			export(@e['id'], @e['damager'])
+			export(@e['id'], array(@e['damager'], add(time(), multiply(array_get(yml_decode(read("config.yml")), "expire-time"), 1000))))
 		
 		}
 	
