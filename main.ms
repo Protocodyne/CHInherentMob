@@ -3,7 +3,8 @@ bind(entity_damage, null, null, @e,
 	if(@e['cause'] == "ENTITY_ATTACK" && @e['type'] != "PLAYER"){
 	
 		@prefix = "&c&l[ CHIM ]&f"
-		@value = array_get(import(@e['id']), 0)
+		@value = import(@e['id'])[0]
+		@config = import("config.CHIM")
 	
 		if(@value && @value != @e['damager']){
 		
@@ -12,7 +13,7 @@ bind(entity_damage, null, null, @e,
 		
 		}else{
 		
-			export(@e['id'], array(@e['damager'], add(time(), multiply(array_get(yml_decode(read("config.yml")), "expire-time"), 1000))))
+			export(@e['id'], array(@e['damager'], add(time(), multiply(@config['expire-time'], 1000))))
 		
 		}
 	
