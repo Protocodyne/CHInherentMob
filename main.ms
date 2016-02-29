@@ -1,3 +1,5 @@
+_config()
+
 bind(entity_damage, null, null, @e,
 
 	if(@e['cause'] == "ENTITY_ATTACK" && @e['type'] != "PLAYER"){
